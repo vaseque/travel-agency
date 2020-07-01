@@ -7,16 +7,14 @@ import {Row, Col} from 'react-flexbox-grid';
 class TripListOptions extends React.Component {
   
   handleTags(tag, checked){
-
     if(checked) {
-       this.props.addTags(tag);
+      this.props.addTags(tag);
     } else {
       this.props.removeTags(tag);
     }
   }
 
   handleDuration(type, value){
-    
     this.props.changeDuration({type, value});
   }
 
@@ -38,7 +36,7 @@ class TripListOptions extends React.Component {
                   placeholder='Search...' 
                   value={filters.phrase} 
                   onChange={event => this.handleSearch(event.currentTarget.value)} 
-                  />
+                />
               </label>
             </div>
           </Col>
@@ -53,7 +51,7 @@ class TripListOptions extends React.Component {
                   min='1' 
                   max='14' 
                   onChange={event => this.handleDuration('from', event.currentTarget.value)} 
-                  />
+                />
               </label>
               <label>
                 to:
@@ -64,7 +62,7 @@ class TripListOptions extends React.Component {
                   min='1' 
                   max='14' 
                   onChange={event => this.handleDuration('to', event.currentTarget.value)} 
-                  />
+                />
               </label>
             </div>
           </Col>
@@ -79,7 +77,7 @@ class TripListOptions extends React.Component {
                         type='checkbox' 
                         checked={filters.tags.indexOf(tag) > -1} 
                         onChange={event => this.handleTags(tag, event.currentTarget.checked)} 
-                        />
+                      />
                       {tag}
                     </label>
                   ))}
@@ -97,6 +95,9 @@ TripListOptions.propTypes = {
   tags: PropTypes.object,
   filters: PropTypes.object,
   changeSearchPhrase: PropTypes.func,
+  addTags: PropTypes.func,
+  removeTags: PropTypes.func,
+  changeDuration: PropTypes.func,
 };
 
 export default TripListOptions;

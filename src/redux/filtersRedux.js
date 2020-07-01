@@ -28,18 +28,21 @@ export default function reducer(statePart = [], action = {}) {
         ...statePart,
         searchPhrase: action.payload,
       };
-
     case ADD_TAGS:
-      return {...statePart, tags: [...statePart.tags, action.payload]};
-
+      return {
+        ...statePart, 
+        tags: [...statePart.tags, action.payload],
+      };
     case REMOVE_TAGS:
-      return {...statePart, tags: [...statePart.tags.filter(tag => tag !== action.payload)]};
-    
+      return {
+        ...statePart,
+        tags: [...statePart.tags.filter(tag => tag !== action.payload)],
+      };  
     case CHANGE_DURATION:
       return {
         ...statePart,
-        duration: {[action.payload.type]: action.payload.value}
-      };
+        duration: {...statePart.duration, [action.payload.type]: action.payload.value},
+      };      
     default:
       return statePart;
   }

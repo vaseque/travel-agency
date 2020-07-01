@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import MainLayout from './components/layout/MainLayout/MainLayout';
@@ -51,14 +51,14 @@ class App extends React.Component {
             atActive={{ opacity: 1 }}
             className={styles.switchWrapper}
           >
-              <Route exact path='/' component={Home} />
-              <Route exact path='/trips' component={Trips} />
-              <Route exact path='/countries' component={Countries} />
-              <Route exact path='/regions' component={Regions} />
-              <Route exact path='/trip/:id' component={Trip} />
-              <Route exact path='/country/:id' component={Country} />
-              <Route exact path='/info' component={Info} />
-              <Route path='*' component={NotFound} />
+            <Route exact path='/' component={Home} />
+            <Route exact path='/trips' component={Trips} />
+            <Route exact path='/countries' component={Countries} />
+            <Route exact path='/regions' component={Regions} />
+            <Route exact path='/trip/:id' component={Trip} />
+            <Route exact path='/country/:id' component={Country} />
+            <Route exact path='/info' component={Info} />
+            <Route path='*' component={NotFound} />
           </AnimatedSwitch>
         </MainLayout>
       </BrowserRouter>
