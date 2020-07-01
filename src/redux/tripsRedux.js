@@ -5,22 +5,24 @@ export const getAllTrips = ({trips}) => trips;
 export const getFilteredTrips = ({trips, filters}) => {
   let output = trips;
 
-  // filter by search phrase
   if(filters.searchPhrase){
     const pattern = new RegExp(filters.searchPhrase, 'i');
     output = output.filter(trip => pattern.test(trip.name));
   }
 
-  // TODO - filter by duration
   if(filters.duration) {
     const from = filters.duration.from;
     const to = filters.duration.to;
     output = output.filter(trip => trip.days >= from && trip.days <= to);
   }
 
-  // TODO - filter by tags 
+  if(filters.tags.length) {
+    output = output.filter(trip => trip.tags.some(tag => filters.tags.includes(tag)));
+  }
 
-  // TODO - sort by cost descending (most expensive goes first)
+  if(output) {
+    output = output.sort((a, b) => parseInt(b.cost.slice(1)) -  parseInt(a.cost.slice(1)));
+  }
 
   return output;
 };

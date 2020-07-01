@@ -3,10 +3,7 @@
 
   > :first-child ~ * {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    transition: .3s ease-in;
     transform: translateY(200px);
+    transition: .3s ease-in-out;
   }
 }
