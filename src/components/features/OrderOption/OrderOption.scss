@@ -5,7 +5,7 @@
 }
 
 .title {
-  margin-bottom: ($base-size * 2);
+  margin-bottom: ($base-size);
 }
 
 .input, .dropdown {
@@ -21,7 +21,7 @@
 
 .icon {
   cursor: pointer;
-  width: 80%;
+  width: 100%;
   padding: ($base-size / 2);
 
   i {
@@ -30,6 +30,7 @@
 
   &Active {
     background: $color-primary;
+    width: 82%;
   }
 }
 
