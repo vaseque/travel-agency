@@ -40,4 +40,9 @@ describe('Component TripSummary', () => {
     expect(component.find('.tags span').at(1)).toEqual(expectedTags[1]);
     expect(component.find('.tags span').at(2)).toEqual(expectedTags[2]);
   });
+
+  it('it should not render parent element for nesting tag spans if prop tags falsy', () => {
+    const component = shallow(<TripSummary tags={null} />);
+    expect(component.find('.tags')).toHaveLength(0);
+  });
 });
