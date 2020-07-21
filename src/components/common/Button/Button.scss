@@ -13,9 +13,11 @@
   font-weight: 700;
   text-transform: uppercase;
   transition: $transition;
+  width: 170px;
+  height: 60px;
 
   &:hover {
-    background: darken($color-success, 5%);
+    background: darken($color-success, 12%);
   }
 
   &.danger {
