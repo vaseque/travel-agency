@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './HappyHourAd.scss';
+import {formatTime} from '../../../utils/formatTime';
 
 class HappyHourAd extends React.Component {
   constructor(){
@@ -24,7 +25,7 @@ class HappyHourAd extends React.Component {
   render() {
     const time = this.getCountdownTime();
     const timeOrText = time < (23*3600)+1
-      ? time
+      ? formatTime(time)
       : 'It\'s your time! Take advantage of Happy Hour! All offers 20% off!';
 
     return (

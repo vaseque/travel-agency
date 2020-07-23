@@ -12,30 +12,6 @@ const mockProps = {
   descr: 'It\'s your time! Take advantage of Happy Hour! All offers 20% off!',
 };
 
-beforeAll(() => {
-  const utilsModule = jest.requireActual('../../../utils/formatTime.js');
-  utilsModule.formatTime = jest.fn(seconds => seconds);
-});
-
-describe('Component HappyHourAd', () => {
-  it('should render component correctly', () => {
-    const component = shallow(<HappyHourAd />);
-    expect(component).toBeTruthy();
-  });
-
-  it('should render heading and description', () => {
-    const component = shallow(<HappyHourAd />);
-    expect(component.exists(select.title)).toEqual(true);
-    expect(component.exists(select.descr)).toEqual(true);
-  });
-
-  it('should render correct title & description', () => {
-    const component = shallow(<HappyHourAd {...mockProps} />);
-    expect(component.find(select.title).text()).toEqual(mockProps.title);
-    expect(component.find(select.descr).hasClass('promoDescription')).toBe(true);
-  });
-});
-
 const trueDate = Date;
 const mockDate = customDate => class extends Date {
   constructor(...args) {
@@ -92,25 +68,5 @@ describe('Component HappyHourAd with mocked Date and delay', () => {
   checkDescriptionAfterTime('13:00:00', 60 * 60, 22 * 60 * 60 + '');
 });
 
-const checkDescriptionAtGivenTime = (time, expectedDescription) => {
-  it('should show promotion description from 12:00:00 to 12:59:59', () => {
-    global.Date = mockDate(`2019-05-14T${time}.135Z`);
 
-    const component = shallow(<HappyHourAd {...mockProps} />);
-    const renderedTime = component.find(select.descr).text();
-    expect(renderedTime).toEqual(expectedDescription);
-
-    global.Date = trueDate;
-  });
-};
-describe('Component HappyHourAd with mocked time and description', () => {
-  checkDescriptionAtGivenTime('12:00:00', mockProps.descr);
-  checkDescriptionAtGivenTime('12:59:59', mockProps.descr);
-  checkDescriptionAtGivenTime('12:07:07', mockProps.descr);
-});
-describe('Component HappyHourAd with mocked time, delay and description at given time', () => {
-  checkDescriptionAfterTime('11:59:59', 1, mockProps.descr);
-  checkDescriptionAfterTime('12:59:57', 2, mockProps.descr);
-  checkDescriptionAfterTime('11:07:07', 60 * 60, mockProps.descr);
-});
 
