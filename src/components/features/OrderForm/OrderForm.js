@@ -8,6 +8,7 @@ import Button from '../../common/Button/Button';
 import {formatPrice} from '../../../utils/formatPrice';
 import {calculateTotal} from '../../../utils/calculateTotal';
 import settings from '../../../data/settings';
+import styles from './OrderForm.scss';
 
 const sendOrder = (options, tripCost, countryId, tripName, countryCode) => {
   const totalCost = formatPrice(calculateTotal(tripCost, options));
@@ -31,12 +32,14 @@ const sendOrder = (options, tripCost, countryId, tripName, countryCode) => {
     body: JSON.stringify(payload),
   };
 
-  fetch(url, fetchOptions)
-    .then(function(response){
-      return response.json();
-    }).then(function(parsedResponse){
-      console.log('parsedResponse', parsedResponse);
-    });
+  if(options.name && options.contact) {
+    fetch(url, fetchOptions)
+      .then(function(response){
+        return response.json();
+      }).then(function(parsedResponse){
+        console.log('parsedResponse', parsedResponse);
+      });
+  }
 };
 
 const OrderForm = ({tripCost, options, setOrderOption, countryId, tripName, countryCode}) => (
@@ -45,7 +48,7 @@ const OrderForm = ({tripCost, options, setOrderOption, countryId, tripName, coun
       <Col md={4} key={option.id}>
         <OrderOption 
           currentValue={options[option.id]}
-          setOrderOption={setOrderOption} 
+          setOrderOption={setOrderOption}
           {...option} 
         />
       </Col>
@@ -55,12 +58,17 @@ const OrderForm = ({tripCost, options, setOrderOption, countryId, tripName, coun
         tripCost={tripCost}
         options={options}
       />
-      {options.name && options.contact 
-        ?
-        <Button onClick={() => sendOrder(options, tripCost, countryId, tripName, countryCode)}>Order now!</Button>
-        :
-        <Button>Name & Contact<br/>Required to Order</Button>
-      }
+      <div className={styles.red}>
+        {!options.name && !options.contact
+          ? <div>Please fill name and contact boxes first</div>
+          : options.name && !options.contact
+            ? <div>Please fill contact box yet</div>
+            : options.contact && !options.name
+              ? <div>Please fill name box yet</div>
+              : null
+        }
+      </div>
+      <Button onClick={() => sendOrder(options, tripCost, countryId, tripName, countryCode)}>Order now!</Button>
     </Col>
   </Row>
 );
