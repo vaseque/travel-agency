@@ -4,12 +4,12 @@ import {shallow} from 'enzyme';
 
 const select = {
   title: '.title',
-  descr: '.promoDescription',
+  promoDescription: '.promoDescription',
 };
 
 const mockProps = {
-  title: 'Happy Hour',
-  descr: 'It\'s your time! Take advantage of Happy Hour! All offers 20% off!',
+  title: 'abc',
+  promoDescription: 'xyz',
 };
 
 const trueDate = Date;
@@ -32,7 +32,7 @@ const checkDescriptionAtTime = (time, expectedDescription) => {
     global.Date = mockDate(`2019-05-14T${time}.135Z`);
 
     const component = shallow(<HappyHourAd {...mockProps} />);
-    const renderedTime = component.find(select.descr).text();
+    const renderedTime = component.find(select.promoDescription).text();
     expect(renderedTime).toEqual(expectedDescription);
 
     global.Date = trueDate;
@@ -55,7 +55,7 @@ const checkDescriptionAfterTime = (time, delaySeconds, expectedDescription) => {
     global.Date = mockDate(newTime.getTime());
 
     jest.advanceTimersByTime(delaySeconds * 1000);
-    const renderedTime = component.find(select.descr).text();
+    const renderedTime = component.find(select.promoDescription).text();
     expect(renderedTime).toEqual(expectedDescription);
 
     global.Date = trueDate;
