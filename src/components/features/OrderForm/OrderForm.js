@@ -11,6 +11,10 @@ import settings from '../../../data/settings';
 import styles from './OrderForm.scss';
 
 const sendOrder = (options, tripCost, tripId, tripName, countryCode) => {
+  if(!(options.name && options.contact)) {
+    return;
+  }
+
   const totalCost = formatPrice(calculateTotal(tripCost, options));
 
   const payload = {
@@ -32,14 +36,12 @@ const sendOrder = (options, tripCost, tripId, tripName, countryCode) => {
     body: JSON.stringify(payload),
   };
 
-  if(options.name && options.contact) {
-    fetch(url, fetchOptions)
-      .then(function(response){
-        return response.json();
-      }).then(function(parsedResponse){
-        console.log('parsedResponse', parsedResponse);
-      });
-  }
+  fetch(url, fetchOptions)
+    .then(function(response){
+      return response.json();
+    }).then(function(parsedResponse){
+      console.log('parsedResponse', parsedResponse);
+    });
 };
 
 const OrderForm = ({tripCost, options, setOrderOption, tripId, tripName, countryCode}) => (

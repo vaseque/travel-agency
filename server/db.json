@@ -6,58 +6,14 @@
       "features": [],
       "adults": 1,
       "children": 0,
-      "name": "s",
-      "contact": "a",
-      "start-date": "",
-      "totalCost": "$98,239",
-      "countryId": "5cc1d101ea12c96fccb428ea",
-      "tripName": "Astonishing swing in admirable Ukraine",
-      "countryCode": "UKR",
-      "id": 1
-    },
-    {
-      "car-rental": "",
-      "accommodation": "hotel",
-      "features": [],
-      "adults": 1,
-      "children": 0,
-      "name": "s",
-      "contact": "a",
-      "start-date": "",
-      "totalCost": "$98,239",
-      "countryId": "5cc1d101ea12c96fccb428ea",
-      "tripName": "Astonishing swing in admirable Ukraine",
-      "countryCode": "UKR",
-      "id": 2
-    },
-    {
-      "car-rental": "",
-      "accommodation": "hotel",
-      "features": [],
-      "adults": 1,
-      "children": 0,
-      "name": "wa",
-      "contact": "aq",
-      "start-date": "",
-      "totalCost": "$139,399",
-      "tripName": "Marvelous travel in fantastic Timor-Leste",
-      "countryCode": "TLS",
-      "id": 3
-    },
-    {
-      "car-rental": "",
-      "accommodation": "hotel",
-      "features": [],
-      "adults": 1,
-      "children": 0,
-      "name": "zaz",
-      "contact": "zaz",
+      "name": "a",
+      "contact": "w",
       "start-date": "",
       "totalCost": "$139,399",
       "tripId": "5cc1d1014c75f672e46ef6d7",
       "tripName": "Marvelous travel in fantastic Timor-Leste",
       "countryCode": "TLS",
-      "id": 4
+      "id": 1
     }
   ]
 }
