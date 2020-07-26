@@ -1,4 +1,5 @@
 import { formatTime } from './formatTime';
+import { promoPrice } from './promoPrice';
 
 describe('utils', () => {
   describe('formatTime', () => {
@@ -22,6 +23,27 @@ describe('utils', () => {
       expect(formatTime(3793)).toBe('01:03:13');
       expect(formatTime(120)).toBe('00:02:00');
       expect(formatTime(3604)).toBe('01:00:04');
+    });
+  });
+
+  describe('promoPrice', () => {
+    it('should return null if there is no args', () => {
+      expect(promoPrice()).toBe(null);
+    });
+
+    it('should return null if any arg is not a number', () => {
+      expect(promoPrice(10, 'abc')).toBe(null);
+      expect(promoPrice(() => {})).toBe(null);
+    });
+
+    it('should return null if any arg is lower than zero', () => {
+      expect(promoPrice(1, -10)).toBe(null);
+      expect(promoPrice(-2, 20)).toBe(null);
+    });
+
+    it('should return correct number after percent calculation', () => {
+      expect(promoPrice(10, 10)).toBe(9);
+      expect(promoPrice(500, 50)).toBe(250);
     });
   });
 });
